@@ -1,1 +1,2 @@
 Mon Jun 05 2023 17: 9: 49 [dynamic!] error: 🐱‍🏍 globalErrorHandler ~~ User validation failed: role: Path `role` is required.
+Mon Jun 05 2023 17: 36: 9 [dynamic!] error: Failed to connect database MongooseError: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.

@@ -2,6 +2,14 @@ import mongoose from 'mongoose'
 import app from './app'
 import config from './config'
 import { errorLogger, logger } from './shared/loggar'
+import { Server } from 'http'
+
+process.on('uncaughtException', error => {
+  errorLogger.error(error)
+  process.exit(1)
+})
+
+let server: Server
 
 async function dbConnection() {
   try {
@@ -16,6 +24,25 @@ async function dbConnection() {
   } catch (err) {
     errorLogger.error(`Failed to connect database ${err}`)
   }
+
+  process.on('unhandledRejection', error => {
+    console.log('unhandledRejection')
+    if (server) {
+      server.close(() => {
+        errorLogger.error(error)
+        process.exit(1)
+      })
+    } else {
+      process.exit(1)
+    }
+  })
 }
 
 dbConnection()
+
+process.on('SIGTERM', () => {
+  logger.info('SIGTERM is received')
+  if (server) {
+    server.close()
+  }
+})

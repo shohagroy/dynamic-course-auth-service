@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express'
 import cors from 'cors'
-import userRoute from './app/modules/users/users.routes'
+import userRoute from './app/modules/users/user.routes'
 import globalErrorHandelar from './app/middlewares/globalErrorHandelar'
 
 const app = express()
@@ -14,6 +14,7 @@ app.use(globalErrorHandelar)
 
 app.get('/', async (req: Request, res: Response) => {
   res.send('dynamic course auth server is running...')
+  // Promise.reject(new Error('dynamic course auth server is running'))
 })
 
 export default app

@@ -1,6 +1,6 @@
 import config from '../../../config'
-import { IUser } from './users.interface'
-import { User } from './users.model'
+import { IUser } from './user.interface'
+import { User } from './user.model'
 import { generateUserId } from './users.utlis'
 
 export const createUserToDb = async (user: IUser): Promise<IUser | null> => {
