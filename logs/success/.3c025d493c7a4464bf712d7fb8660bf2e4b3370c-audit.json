@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "C:\\Apollo-Level2-Web-Dev\\peojects\\dynamic-course-auth-service\\logs\\success\\.3c025d493c7a4464bf712d7fb8660bf2e4b3370c-audit.json",
+    "files": [
+        {
+            "date": 1685963369426,
+            "name": "C:\\Apollo-Level2-Web-Dev\\peojects\\dynamic-course-auth-service\\logs\\success\\dynamic-2023-06-05-17-success.log",
+            "hash": "ec87ca35923676022106efb6d826bbf42a4bf3485e113d3acc727ad9135ae116"
+        }
+    ],
+    "hashType": "sha256"
+}
