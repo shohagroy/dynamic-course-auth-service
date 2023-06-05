@@ -1,3 +1,0 @@
-Mon Jun 05 2023 3: 35: 8 [dynamic!] error: Failed to connect database TypeError: loggar_1.errorLogger.ERROR is not a function
-Mon Jun 05 2023 3: 35: 13 [dynamic!] error: db uri is not defined
-Mon Jun 05 2023 3: 35: 16 [dynamic!] error: db uri is not defined
