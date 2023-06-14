@@ -1,51 +1,24 @@
 import { z } from 'zod'
+import {
+  academicSemesterCode,
+  academicSemesterMonth,
+  academicSemesterTitle,
+} from './academicSemester.constant'
 
 export const createAcademicSemestedZodSchema = z.object({
   body: z.object({
-    title: z.enum(['autumn', 'summer', 'fall'], {
+    title: z.enum([...academicSemesterTitle] as [string, ...string[]], {
       required_error: 'tittle is required',
     }),
     year: z.number({
       required_error: 'year is required',
     }),
-    code: z.enum(['01', '02', '03']),
-    startMonth: z.enum(
-      [
-        'january',
-        'february',
-        'march',
-        'april',
-        'may',
-        'june',
-        'july',
-        'august',
-        'september',
-        'october',
-        'november',
-        'december',
-      ],
-      {
-        required_error: 'end month is required',
-      }
-    ),
-    endMonth: z.enum(
-      [
-        'january',
-        'february',
-        'march',
-        'april',
-        'may',
-        'june',
-        'july',
-        'august',
-        'september',
-        'october',
-        'november',
-        'december',
-      ],
-      {
-        required_error: 'end month is required',
-      }
-    ),
+    code: z.enum([...academicSemesterCode] as [string, ...string[]]),
+    startMonth: z.enum([...academicSemesterMonth] as [string, ...string[]], {
+      required_error: 'end month is required',
+    }),
+    endMonth: z.enum([...academicSemesterMonth] as [string, ...string[]], {
+      required_error: 'end month is required',
+    }),
   }),
 })
