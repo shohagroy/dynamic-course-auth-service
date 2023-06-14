@@ -34,6 +34,21 @@
             "date": 1686218420910,
             "name": "C:\\Apollo-Level2-Web-Dev\\peojects\\dynamic-course-auth-service\\logs\\success\\dynamic-2023-06-08-16-success.log",
             "hash": "fa15ecbea8f030f658948fbbe9945270a1a8b570596d7c77fa462cf2f8da85b7"
+        },
+        {
+            "date": 1686222126115,
+            "name": "C:\\Apollo-Level2-Web-Dev\\peojects\\dynamic-course-auth-service\\logs\\success\\dynamic-2023-06-08-17-success.log",
+            "hash": "43d59973db3a0cd155aeae1e08ad028069cef107dd9a183e7faf8e18aa32f4ff"
+        },
+        {
+            "date": 1686261289018,
+            "name": "C:\\Apollo-Level2-Web-Dev\\peojects\\dynamic-course-auth-service\\logs\\success\\dynamic-2023-06-09-03-success.log",
+            "hash": "219b7530293ce531532dce2f04cede86adaf81ddc9d7742fb1550ba4adfc6e9f"
+        },
+        {
+            "date": 1686745077116,
+            "name": "C:\\Apollo-Level2-Web-Dev\\peojects\\dynamic-course-auth-service\\logs\\success\\dynamic-2023-06-14-18-success.log",
+            "hash": "bb65aec2f7cad5366530c680e7d46dc1fcf3ed110e28ddcc32354de763617480"
         }
     ],
     "hashType": "sha256"

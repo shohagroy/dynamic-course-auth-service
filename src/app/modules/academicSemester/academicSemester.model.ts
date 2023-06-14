@@ -4,10 +4,26 @@ import {
   IAcademicSemester,
 } from './academicSemester.interface'
 
+const Month = [
+  'january',
+  'february',
+  'march',
+  'april',
+  'may',
+  'june',
+  'july',
+  'august',
+  'september',
+  'october',
+  'november',
+  'december',
+]
+
 const academicSemesterSchema = new Schema<IAcademicSemester>(
   {
     title: {
       type: String,
+      enum: ['autumn', 'summer', 'fall'],
       required: true,
     },
     year: {
@@ -16,14 +32,17 @@ const academicSemesterSchema = new Schema<IAcademicSemester>(
     },
     code: {
       type: String,
+      enum: ['01', '02', '03'],
       required: true,
     },
     startMonth: {
       type: String,
+      enum: Month,
       required: true,
     },
     endMonth: {
       type: String,
+      enum: Month,
       required: true,
     },
   },

@@ -20,8 +20,13 @@ const globalErrorHandler: ErrorRequestHandler = (
     : errorLogger.error(`🐱‍🏍 globalErrorHandler ~~`, error)
 
   let statusCode = 500
-  let message = 'Something went wrong !'
+  let message = 'Something went wrong!'
   let errorMessages: IGenericErrorMessage[] = []
+
+  console.log(
+    'errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrroooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooorrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr',
+    error
+  )
 
   if (error?.name === 'ValidationError') {
     const simplifiedError = handleValidationError(error)
