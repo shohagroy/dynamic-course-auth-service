@@ -1,18 +1,21 @@
 import { NextFunction, Request, Response } from 'express'
-import catchAsuncFn from '../../../shared/catchAsync'
+import catchAsync from '../../../shared/catchAsync'
+import sendResponse from '../../../shared/sendResponse'
+import { IAcademicSemester } from './academicSemester.interface'
 import { creareAcademicSemesterService } from './academicSemester.service'
 
-export const creareAcademicSemester = catchAsuncFn(
+export const creareAcademicSemester = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const { ...academicSemesterData } = req.body
-
     const result = await creareAcademicSemesterService(academicSemesterData)
 
-    next()
-    res.status(201).json({
-      status: 'success',
-      message: 'Academic Semister create successfully',
+    sendResponse<IAcademicSemester>(res, {
+      statusCode: 201,
+      success: true,
+      message: 'Academic Semester created successfully',
       data: result,
     })
+
+    next()
   }
 )

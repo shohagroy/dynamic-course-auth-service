@@ -1,18 +1,21 @@
 import { NextFunction, Request, Response } from 'express'
-import catchAsuncFn from '../../../shared/catchAsync'
+import catchAsync from '../../../shared/catchAsync'
+import sendResponse from '../../../shared/sendResponse'
+import { IUser } from './user.interface'
 import { createUserToDb } from './user.services'
 
-export const createUser = catchAsuncFn(
+export const createUser = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const { user } = req.body
     const result = await createUserToDb(user)
 
-    next()
-
-    res.status(201).json({
-      status: 'success',
-      message: 'user create successfully',
+    sendResponse<IUser>(res, {
+      statusCode: 201,
+      success: true,
+      message: 'User Created Successfully',
       data: result,
     })
+
+    next()
   }
 )
