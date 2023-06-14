@@ -11,4 +11,4 @@ route.post(
   creareAcademicSemester
 )
 
-export default route
+export const academicRoute = route

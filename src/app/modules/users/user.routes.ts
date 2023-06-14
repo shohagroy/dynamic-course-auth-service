@@ -12,4 +12,4 @@ route.post('/create-user', validateRequest(createUserZodSchema), createUser)
 //   throw new ApiError(500, 'this is error message')
 // })
 
-export default route
+export const userRoute = route
