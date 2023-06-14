@@ -14,7 +14,7 @@ export type IAcademicSemesterMonths =
   | 'november'
   | 'december'
 
-export type IAcademicSemesterTitles = 'autum' | 'summer' | 'fall'
+export type IAcademicSemesterTitles = 'autumn' | 'summer' | 'fall'
 export type IAcademicSemesterCodes = '01' | '02' | '03'
 
 export type IAcademicSemester = {

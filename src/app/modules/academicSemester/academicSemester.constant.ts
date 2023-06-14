@@ -5,7 +5,7 @@ import {
 } from './academicSemester.interface'
 
 export const academicSemesterTitle: IAcademicSemesterTitles[] = [
-  'autum',
+  'autumn',
   'summer',
   'fall',
 ]
