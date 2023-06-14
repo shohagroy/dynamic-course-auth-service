@@ -26,3 +26,11 @@ export const academicSemesterMonth: IAcademicSemesterMonths[] = [
   'november',
   'december',
 ]
+
+export const academicSemesterTitleCode: {
+  [key: string]: string
+} = {
+  autumn: '01',
+  summer: '02',
+  fall: '03',
+}
