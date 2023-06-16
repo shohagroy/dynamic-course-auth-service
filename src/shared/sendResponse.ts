@@ -13,9 +13,9 @@ type IApiReponse<T> = {
 }
 
 const sendResponse = <T>(res: Response, payload: IApiReponse<T>): void => {
-  const { statusCode, message, data, success } = payload
+  const { statusCode, message, data, success, meta } = payload
 
-  res.status(statusCode).json({ success, message, data })
+  res.status(statusCode).json({ success, message, meta, data })
 }
 
 export default sendResponse
