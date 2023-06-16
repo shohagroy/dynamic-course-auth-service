@@ -84,6 +84,11 @@
             "date": 1686949238455,
             "name": "C:\\Apollo-Level2-Web-Dev\\peojects\\dynamic-course-auth-service\\logs\\errors\\dynamic-2023-06-17-03-error.log",
             "hash": "7df5de6bab35ae028caef3da8d353b3c80eda13a3054a7e55ff77b7122d78ff0"
+        },
+        {
+            "date": 1686952813371,
+            "name": "C:\\Apollo-Level2-Web-Dev\\peojects\\dynamic-course-auth-service\\logs\\errors\\dynamic-2023-06-17-04-error.log",
+            "hash": "b4fa50ae524825fa23c319a04eb83717013c3faba607d2d97e929311ece607cc"
         }
     ],
     "hashType": "sha256"

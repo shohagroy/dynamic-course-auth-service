@@ -1,4 +1,6 @@
+import { SortOrder } from 'mongoose'
 import ApiError from '../../../errors/ApiError'
+import calculatePagination from '../../../helpers/paginationHealpers'
 import { IGenericResponse } from '../../../inferfaces/common'
 import { IPaginationOption } from '../../../inferfaces/pagination'
 import { academicSemesterTitleCode } from './academicSemester.constant'
@@ -18,11 +20,19 @@ export const creareAcademicSemesterService = async (
 export const getAllSemestersByDb = async (
   paginationOptions: IPaginationOption
 ): Promise<IGenericResponse<IAcademicSemester[]>> => {
-  const { page = 1, limit = 10 } = paginationOptions
-  const skip = (page - 1) * limit
+  const { page, limit, skip, sortBy, sortOrder } =
+    calculatePagination(paginationOptions)
 
-  const response = await AcademicSemester.find().sort().skip(skip).limit(limit)
+  const sortCondition: { [key: string]: SortOrder } = {}
 
+  if (sortBy && sortOrder) {
+    sortCondition[sortBy] = sortOrder
+  }
+
+  const response = await AcademicSemester.find()
+    .sort(sortCondition)
+    .skip(skip)
+    .limit(limit)
   const data: IAcademicSemester[] = response
   const total = await AcademicSemester.countDocuments()
 
