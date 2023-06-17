@@ -59,7 +59,8 @@ export const getAllSemestersByDb = async (
     sortCondition[sortBy] = sortOrder
   }
 
-  const response = await AcademicSemester.find({ $and: andCondition })
+  const whareCondition = andCondition.length > 0 ? { $and: andCondition } : {}
+  const response = await AcademicSemester.find(whareCondition)
     .sort(sortCondition)
     .skip(skip)
     .limit(limit)
@@ -74,4 +75,11 @@ export const getAllSemestersByDb = async (
     },
     data: data,
   }
+}
+
+export const getSingleSemestersToDb = async (
+  id: string
+): Promise<IAcademicSemester | null> => {
+  const response = await AcademicSemester.findById(id)
+  return response
 }

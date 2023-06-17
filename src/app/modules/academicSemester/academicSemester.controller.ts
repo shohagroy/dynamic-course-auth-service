@@ -8,6 +8,7 @@ import {
 import {
   creareAcademicSemesterService,
   getAllSemestersByDb,
+  getSingleSemestersToDb,
 } from './academicSemester.service'
 
 import { IPaginationOption } from '../../../inferfaces/pagination'
@@ -51,6 +52,34 @@ export const getAllSemesters = catchAsync(
       message: 'Semesters recvied successfully',
       meta: results.meta,
       data: results.data,
+    })
+
+    next()
+  }
+)
+
+export const getSingleSemesters = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const id = req.params.id
+
+    const result = await getSingleSemestersToDb(id)
+    // const filters: IAcademicSemesterFilter = pick(
+    //   req.query,
+    //   academicSemesterFilterableFilds
+    // )
+
+    // const paginationOptions: IPaginationOption = pick(
+    //   req.query,
+    //   paginationFinds
+    // )
+
+    // const results = await getAllSemestersByDb(filters, paginationOptions)
+
+    sendResponse<IAcademicSemester>(res, {
+      statusCode: 201,
+      success: true,
+      message: 'Semesters recvied successfully',
+      data: result,
     })
 
     next()

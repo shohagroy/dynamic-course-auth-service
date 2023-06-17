@@ -3,6 +3,7 @@ import validateRequest from '../../middlewares/validateRequest'
 import {
   creareAcademicSemester,
   getAllSemesters,
+  getSingleSemesters,
 } from './academicSemester.controller'
 import { createAcademicSemestedZodSchema } from './academicSemster.validation'
 
@@ -14,6 +15,7 @@ route.post(
   creareAcademicSemester
 )
 
-route.get('/get-semesters', getAllSemesters)
+route.get('/:id', getSingleSemesters)
+route.get('/', getAllSemesters)
 
 export const academicRoute = route
