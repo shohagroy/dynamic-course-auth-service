@@ -4,6 +4,7 @@ import {
   creareAcademicSemester,
   getAllSemesters,
   getSingleSemesters,
+  updateSingleSemester,
 } from './academicSemester.controller'
 import { createAcademicSemestedZodSchema } from './academicSemster.validation'
 
@@ -16,6 +17,7 @@ route.post(
 )
 
 route.get('/:id', getSingleSemesters)
+route.patch('/:id', updateSingleSemester)
 route.get('/', getAllSemesters)
 
 export const academicRoute = route

@@ -83,3 +83,13 @@ export const getSingleSemestersToDb = async (
   const response = await AcademicSemester.findById(id)
   return response
 }
+
+export const updateSingleSemesterService = async (
+  id: string,
+  data: Partial<IAcademicSemester>
+): Promise<IAcademicSemester | null> => {
+  const response = await AcademicSemester.findOneAndUpdate({ _id: id }, data, {
+    new: true,
+  })
+  return response
+}

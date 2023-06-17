@@ -9,6 +9,7 @@ import {
   creareAcademicSemesterService,
   getAllSemestersByDb,
   getSingleSemestersToDb,
+  updateSingleSemesterService,
 } from './academicSemester.service'
 
 import { IPaginationOption } from '../../../inferfaces/pagination'
@@ -71,6 +72,22 @@ export const getSingleSemesters = catchAsync(
       data: result,
     })
 
+    next()
+  }
+)
+
+export const updateSingleSemester = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const id = req.params.id
+    const updatedData = req.body
+
+    const result = await updateSingleSemesterService(id, updatedData)
+    sendResponse<IAcademicSemester>(res, {
+      statusCode: 201,
+      success: true,
+      message: 'Semester Updated successfully',
+      data: result,
+    })
     next()
   }
 )
