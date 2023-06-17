@@ -3,7 +3,10 @@ import ApiError from '../../../errors/ApiError'
 import calculatePagination from '../../../helpers/paginationHealpers'
 import { IGenericResponse } from '../../../inferfaces/common'
 import { IPaginationOption } from '../../../inferfaces/pagination'
-import { academicSemesterTitleCode } from './academicSemester.constant'
+import {
+  academicSemesterSearchableFilds,
+  academicSemesterTitleCode,
+} from './academicSemester.constant'
 import {
   IAcademicSemester,
   IAcademicSemesterFilter,
@@ -24,10 +27,9 @@ export const getAllSemestersByDb = async (
   filters: IAcademicSemesterFilter,
   paginationOptions: IPaginationOption
 ): Promise<IGenericResponse<IAcademicSemester[]>> => {
-  const { searchTrum } = filters
+  const { searchTrum, ...filtersData } = filters
 
   const andCondition = []
-  const academicSemesterSearchableFilds = ['title', 'code', 'year']
 
   if (searchTrum) {
     andCondition.push({
@@ -36,6 +38,14 @@ export const getAllSemestersByDb = async (
           $regex: searchTrum,
           $options: 'i',
         },
+      })),
+    })
+  }
+
+  if (Object.keys(filtersData).length) {
+    andCondition.push({
+      $and: Object.entries(filtersData).map(([filed, value]) => ({
+        [filed]: value,
       })),
     })
   }

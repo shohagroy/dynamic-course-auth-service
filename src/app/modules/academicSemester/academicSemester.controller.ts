@@ -13,6 +13,7 @@ import {
 import { IPaginationOption } from '../../../inferfaces/pagination'
 import pick from '../../../shared/pick'
 import paginationFinds from '../../../constants/pagination'
+import { academicSemesterFilterableFilds } from './academicSemester.constant'
 
 export const creareAcademicSemester = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -32,7 +33,11 @@ export const creareAcademicSemester = catchAsync(
 
 export const getAllSemesters = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    const filters: IAcademicSemesterFilter = pick(req.query, ['searchTrum'])
+    const filters: IAcademicSemesterFilter = pick(
+      req.query,
+      academicSemesterFilterableFilds
+    )
+
     const paginationOptions: IPaginationOption = pick(
       req.query,
       paginationFinds

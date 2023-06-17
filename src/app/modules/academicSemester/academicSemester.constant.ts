@@ -34,3 +34,11 @@ export const academicSemesterTitleCode: {
   summer: '02',
   fall: '03',
 }
+
+export const academicSemesterSearchableFilds = ['title', 'code', 'year']
+export const academicSemesterFilterableFilds = [
+  'searchTrum',
+  'title',
+  'code',
+  'year',
+]
