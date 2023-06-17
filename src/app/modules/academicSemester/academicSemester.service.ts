@@ -4,7 +4,10 @@ import calculatePagination from '../../../helpers/paginationHealpers'
 import { IGenericResponse } from '../../../inferfaces/common'
 import { IPaginationOption } from '../../../inferfaces/pagination'
 import { academicSemesterTitleCode } from './academicSemester.constant'
-import { IAcademicSemester } from './academicSemester.interface'
+import {
+  IAcademicSemester,
+  IAcademicSemesterFilter,
+} from './academicSemester.interface'
 import { AcademicSemester } from './academicSemester.model'
 
 export const creareAcademicSemesterService = async (
@@ -18,8 +21,25 @@ export const creareAcademicSemesterService = async (
 }
 
 export const getAllSemestersByDb = async (
+  filters: IAcademicSemesterFilter,
   paginationOptions: IPaginationOption
 ): Promise<IGenericResponse<IAcademicSemester[]>> => {
+  const { searchTrum } = filters
+
+  const andCondition = []
+  const academicSemesterSearchableFilds = ['title', 'code', 'year']
+
+  if (searchTrum) {
+    andCondition.push({
+      $or: academicSemesterSearchableFilds.map(search => ({
+        [search]: {
+          $regex: searchTrum,
+          $options: 'i',
+        },
+      })),
+    })
+  }
+
   const { page, limit, skip, sortBy, sortOrder } =
     calculatePagination(paginationOptions)
 
@@ -29,7 +49,7 @@ export const getAllSemestersByDb = async (
     sortCondition[sortBy] = sortOrder
   }
 
-  const response = await AcademicSemester.find()
+  const response = await AcademicSemester.find({ $and: andCondition })
     .sort(sortCondition)
     .skip(skip)
     .limit(limit)

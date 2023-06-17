@@ -1,7 +1,10 @@
 import { NextFunction, Request, Response } from 'express'
 import catchAsync from '../../../shared/catchAsync'
 import sendResponse from '../../../shared/sendResponse'
-import { IAcademicSemester } from './academicSemester.interface'
+import {
+  IAcademicSemester,
+  IAcademicSemesterFilter,
+} from './academicSemester.interface'
 import {
   creareAcademicSemesterService,
   getAllSemestersByDb,
@@ -29,12 +32,13 @@ export const creareAcademicSemester = catchAsync(
 
 export const getAllSemesters = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
+    const filters: IAcademicSemesterFilter = pick(req.query, ['searchTrum'])
     const paginationOptions: IPaginationOption = pick(
       req.query,
       paginationFinds
     )
 
-    const results = await getAllSemestersByDb(paginationOptions)
+    const results = await getAllSemestersByDb(filters, paginationOptions)
 
     sendResponse<IAcademicSemester[]>(res, {
       statusCode: 201,
