@@ -6,7 +6,10 @@ import {
   getSingleSemesters,
   updateSingleSemester,
 } from './academicSemester.controller'
-import { createAcademicSemestedZodSchema } from './academicSemster.validation'
+import {
+  createAcademicSemestedZodSchema,
+  updateAcademicSemestedZodSchema,
+} from './academicSemster.validation'
 
 const route = express.Router()
 
@@ -17,7 +20,11 @@ route.post(
 )
 
 route.get('/:id', getSingleSemesters)
-route.patch('/:id', updateSingleSemester)
+route.patch(
+  '/:id',
+  validateRequest(updateAcademicSemestedZodSchema),
+  updateSingleSemester
+)
 route.get('/', getAllSemesters)
 
 export const academicRoute = route
