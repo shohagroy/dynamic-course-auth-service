@@ -1,7 +1,9 @@
 import express from 'express'
 import validateRequest from '../../middlewares/validateRequest'
+import router from '../../routes'
 import {
   creareAcademicSemester,
+  deleteSingleSemester,
   getAllSemesters,
   getSingleSemesters,
   updateSingleSemester,
@@ -25,6 +27,8 @@ route.patch(
   validateRequest(updateAcademicSemestedZodSchema),
   updateSingleSemester
 )
+
+router.delete('/id', deleteSingleSemester)
 route.get('/', getAllSemesters)
 
 export const academicRoute = route

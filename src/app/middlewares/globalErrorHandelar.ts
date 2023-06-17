@@ -1,4 +1,4 @@
-import { ErrorRequestHandler, NextFunction, Request, Response } from 'express'
+import { ErrorRequestHandler, Request, Response } from 'express'
 import { Error } from 'mongoose'
 import { ZodError } from 'zod'
 
@@ -13,8 +13,7 @@ import handleZodError from './handleZodError'
 const globalErrorHandler: ErrorRequestHandler = (
   error,
   req: Request,
-  res: Response,
-  next: NextFunction
+  res: Response
 ) => {
   config.node_env === 'development'
     ? console.log(`🐱‍🏍 globalErrorHandler ~~`, error)
@@ -68,8 +67,6 @@ const globalErrorHandler: ErrorRequestHandler = (
     errorMessages,
     stack: config.node_env !== 'production' ? error?.stack : undefined,
   })
-
-  next()
 }
 
 export default globalErrorHandler

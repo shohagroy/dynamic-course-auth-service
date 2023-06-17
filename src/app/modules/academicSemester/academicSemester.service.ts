@@ -100,3 +100,10 @@ export const updateSingleSemesterService = async (
   })
   return response
 }
+
+export const deleteSingleSemesterService = async (
+  id: string
+): Promise<IAcademicSemester | null> => {
+  const response = await AcademicSemester.findByIdAndDelete(id)
+  return response
+}

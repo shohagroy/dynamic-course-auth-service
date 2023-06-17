@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express'
+import { Request, Response } from 'express'
 import catchAsync from '../../../shared/catchAsync'
 import sendResponse from '../../../shared/sendResponse'
 import {
@@ -7,6 +7,7 @@ import {
 } from './academicSemester.interface'
 import {
   creareAcademicSemesterService,
+  deleteSingleSemesterService,
   getAllSemestersByDb,
   getSingleSemestersToDb,
   updateSingleSemesterService,
@@ -18,7 +19,7 @@ import paginationFinds from '../../../constants/pagination'
 import { academicSemesterFilterableFilds } from './academicSemester.constant'
 
 export const creareAcademicSemester = catchAsync(
-  async (req: Request, res: Response, next: NextFunction) => {
+  async (req: Request, res: Response) => {
     const { ...academicSemesterData } = req.body
     const result = await creareAcademicSemesterService(academicSemesterData)
 
@@ -28,13 +29,11 @@ export const creareAcademicSemester = catchAsync(
       message: 'Academic Semester created successfully',
       data: result,
     })
-
-    next()
   }
 )
 
 export const getAllSemesters = catchAsync(
-  async (req: Request, res: Response, next: NextFunction) => {
+  async (req: Request, res: Response) => {
     const filters: IAcademicSemesterFilter = pick(
       req.query,
       academicSemesterFilterableFilds
@@ -54,13 +53,11 @@ export const getAllSemesters = catchAsync(
       meta: results.meta,
       data: results.data,
     })
-
-    next()
   }
 )
 
 export const getSingleSemesters = catchAsync(
-  async (req: Request, res: Response, next: NextFunction) => {
+  async (req: Request, res: Response) => {
     const id = req.params.id
 
     const result = await getSingleSemestersToDb(id)
@@ -71,13 +68,11 @@ export const getSingleSemesters = catchAsync(
       message: 'Semester recvied successfully',
       data: result,
     })
-
-    next()
   }
 )
 
 export const updateSingleSemester = catchAsync(
-  async (req: Request, res: Response, next: NextFunction) => {
+  async (req: Request, res: Response) => {
     const id = req.params.id
     const updatedData = req.body
 
@@ -88,6 +83,19 @@ export const updateSingleSemester = catchAsync(
       message: 'Semester Updated successfully',
       data: result,
     })
-    next()
+  }
+)
+
+export const deleteSingleSemester = catchAsync(
+  async (req: Request, res: Response) => {
+    const id = req.params.id
+
+    const result = await deleteSingleSemesterService(id)
+    sendResponse<IAcademicSemester>(res, {
+      statusCode: 201,
+      success: true,
+      message: 'Semester Delete successfully',
+      data: result,
+    })
   }
 )
