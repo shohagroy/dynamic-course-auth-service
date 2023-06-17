@@ -4,6 +4,7 @@ import { ZodError } from 'zod'
 
 import config from '../../config'
 import ApiError from '../../errors/ApiError'
+import handelCastError from '../../errors/handelCastError'
 import handleValidationError from '../../errors/handleValidationError'
 import { IGenericErrorMessage } from '../../inferfaces/error'
 import { errorLogger } from '../../shared/loggar'
@@ -30,6 +31,11 @@ const globalErrorHandler: ErrorRequestHandler = (
     errorMessages = simplifiedError.errorMessages
   } else if (error instanceof ZodError) {
     const simplifiedError = handleZodError(error)
+    statusCode = simplifiedError.statusCode
+    message = simplifiedError.message
+    errorMessages = simplifiedError.errorMessages
+  } else if (error === 'CastError') {
+    const simplifiedError = handelCastError(error)
     statusCode = simplifiedError.statusCode
     message = simplifiedError.message
     errorMessages = simplifiedError.errorMessages

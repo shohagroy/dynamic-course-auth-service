@@ -63,22 +63,11 @@ export const getSingleSemesters = catchAsync(
     const id = req.params.id
 
     const result = await getSingleSemestersToDb(id)
-    // const filters: IAcademicSemesterFilter = pick(
-    //   req.query,
-    //   academicSemesterFilterableFilds
-    // )
-
-    // const paginationOptions: IPaginationOption = pick(
-    //   req.query,
-    //   paginationFinds
-    // )
-
-    // const results = await getAllSemestersByDb(filters, paginationOptions)
 
     sendResponse<IAcademicSemester>(res, {
       statusCode: 201,
       success: true,
-      message: 'Semesters recvied successfully',
+      message: 'Semester recvied successfully',
       data: result,
     })
 
